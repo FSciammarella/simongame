@@ -12,7 +12,7 @@ var gameObject = {
     gamePhase: SETUP,
 }
 
-function playAudio(id="wrong") {
+function playAudio(id = "wrong") {
     let sample = new Audio("sounds/" + id + ".mp3");
     sample.play()
 }
@@ -24,12 +24,12 @@ function animateButtonPress(target) {
     }, 100);
 }
 
-function blink(targetID,duration=100){
+function blink(targetID, duration = 100) {
     console.log(targetID)
-    $("#"+targetID).fadeOut(duration).fadeIn(duration);
-} 
+    $("#" + targetID).fadeOut(duration).fadeIn(duration);
+}
 
-function newMove(){
+function newMove() {
     return gameObject.moves[Math.trunc(Math.random() * gameObject.moves.length)]
 }
 
@@ -41,7 +41,7 @@ function gameStep() {
             gameObject.cursor = 0;
             gameObject.gamePhase = COMPUTER;
             gameObject.level = 1
-            $(document).off("keypress");
+            $(document).off();
             break;
         case COMPUTER:
             $("#level-title").text("Level: " + gameObject.level);
@@ -79,6 +79,10 @@ function gameStep() {
                     playAudio();
                     $(".btn").off()
                     gameObject.gamePhase = GAME_OVER;
+                    $("body").toggleClass("game-over");
+                    setTimeout(() => {
+                        $("body").toggleClass("game-over")
+                    }, 200);
                     setTimeout(gameStep, 500);
                 }
             })
@@ -88,6 +92,8 @@ function gameStep() {
             // Returns to Setup Phase
             gameObject.gamePhase = SETUP;
             $(document).on("keypress", gameStep);
+            $(document).on("click", gameStep)
+
             return
     }
     // Chains next game loop
@@ -95,3 +101,4 @@ function gameStep() {
 }
 
 $(document).on("keypress", gameStep)
+$(document).on("click", gameStep)
