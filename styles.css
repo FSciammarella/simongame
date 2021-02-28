@@ -6,7 +6,7 @@ body {
 #level-title {
   font-family: 'Press Start 2P', cursive;
   font-size: 3rem;
-  margin:  5%;
+  margin:  3%;
   color: #FEF2BF;
 }
 
@@ -25,6 +25,7 @@ body {
   border: 10px solid black;
   border-radius: 20%;
 }
+
 
 .game-over {
   background-color: red;
