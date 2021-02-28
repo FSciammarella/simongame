@@ -23,14 +23,14 @@ function gameStep() {
         case "computer":
             if (gameObject.cursor < gameObject.computerMoves.length) {
                 $("#" + gameObject.computerMoves[gameObject.cursor]).fadeOut(100).fadeIn(100);
-                let sample = new Audio("/sounds/"+gameObject.computerMoves[gameObject.cursor]+".mp3");
+                let sample = new Audio("sounds/"+gameObject.computerMoves[gameObject.cursor]+".mp3");
                 sample.play()
                 gameObject.cursor++
             } else {
                 gameObject.computerMoves.push(gameObject.moves[Math.trunc(Math.random() * gameObject.moves.length)]);
                 $("#" + gameObject.computerMoves[gameObject.cursor]).fadeOut(100).fadeIn(100);
                 gameObject.gamePhase = 2;
-                let sample = new Audio("/sounds/"+gameObject.computerMoves[gameObject.cursor]+".mp3");
+                let sample = new Audio("sounds/"+gameObject.computerMoves[gameObject.cursor]+".mp3");
                 gameObject.cursor = 0;
                 $("#level-title").text("Level: "+gameObject.level);
                 sample.play()
@@ -46,7 +46,7 @@ function gameStep() {
                 // console.log(gameObject.cursor)
                 if (gameObject.computerMoves[gameObject.cursor] == gameObject.playerMoves[gameObject.cursor]) {
                     console.log(gameObject.computerMoves[gameObject.cursor] + "==" + gameObject.playerMoves[gameObject.cursor])
-                    let sample = new Audio("/sounds/"+e.target.id+".mp3");
+                    let sample = new Audio("sounds/"+e.target.id+".mp3");
                     sample.play();
                     gameObject.cursor++;
                     if (gameObject.cursor == gameObject.computerMoves.length) {
@@ -58,7 +58,7 @@ function gameStep() {
                         setTimeout(gameStep, 800);
                     }
                 } else {
-                    let sample = new Audio("/sounds/wrong.mp3");
+                    let sample = new Audio("sounds/wrong.mp3");
                     sample.play()
                     $(".btn").off()
                     gameObject.gamePhase = 3;
